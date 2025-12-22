@@ -23,7 +23,6 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
       {/* Image */}
       <div className="relative aspect-[16/10] overflow-hidden bg-muted">
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-        <div className="absolute inset-0 hce-grid-bg opacity-40" />
         
         {/* Type badge */}
         <div className="absolute top-4 left-4 z-20">
@@ -35,14 +34,25 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
         
-        {/* Project icon/visual */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="h-24 w-24 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-            <span className="font-mono text-3xl font-bold text-primary">
-              {project.name.charAt(0)}
-            </span>
-          </div>
-        </div>
+        {/* Project image or fallback */}
+        {project.images && project.images.length > 0 ? (
+          <img 
+            src={project.images[0]} 
+            alt={project.name}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <>
+            <div className="absolute inset-0 hce-grid-bg opacity-40" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="h-24 w-24 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                <span className="font-mono text-3xl font-bold text-primary">
+                  {project.name.charAt(0)}
+                </span>
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Content */}
@@ -108,25 +118,49 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 
         {/* Header image */}
         <div className="relative aspect-video bg-muted">
-          <div className="absolute inset-0 hce-grid-bg opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent z-10" />
           
           {/* Type badge */}
-          <div className="absolute top-4 left-4">
+          <div className="absolute top-4 left-4 z-20">
             <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-mono border ${typeColors[project.type]}`}>
               {project.type}
             </span>
           </div>
 
-          {/* Project visual */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="h-32 w-32 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-              <span className="font-mono text-5xl font-bold text-primary">
-                {project.name.charAt(0)}
-              </span>
-            </div>
-          </div>
+          {/* Project image or fallback */}
+          {project.images && project.images.length > 0 ? (
+            <img 
+              src={project.images[0]} 
+              alt={project.name}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <>
+              <div className="absolute inset-0 hce-grid-bg opacity-30" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="h-32 w-32 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <span className="font-mono text-5xl font-bold text-primary">
+                    {project.name.charAt(0)}
+                  </span>
+                </div>
+              </div>
+            </>
+          )}
         </div>
+
+        {/* Image gallery */}
+        {project.images && project.images.length > 1 && (
+          <div className="px-8 pt-6 flex gap-3 overflow-x-auto scrollbar-hce">
+            {project.images.map((img, index) => (
+              <img 
+                key={index}
+                src={img} 
+                alt={`${project.name} - ${index + 1}`}
+                className="h-20 w-32 object-cover rounded-lg border border-border/50 flex-shrink-0"
+              />
+            ))}
+          </div>
+        )}
 
         {/* Content */}
         <div className="p-8">
@@ -181,10 +215,19 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                 Quero algo assim
               </Button>
             </Link>
-            <Button variant="outline" className="hce-btn-outline rounded-lg">
-              <ExternalLink className="h-4 w-4 mr-2" />
-              Ver online
-            </Button>
+            {project.liveUrl ? (
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="hce-btn-outline rounded-lg">
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Ver online
+                </Button>
+              </a>
+            ) : (
+              <Button variant="outline" className="hce-btn-outline rounded-lg opacity-50 cursor-not-allowed" disabled>
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Ver online
+              </Button>
+            )}
           </div>
         </div>
       </motion.div>
