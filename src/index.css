@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* HCE Design System - Operations Base Theme */
+
+@layer base {
+  :root {
+    /* Core backgrounds */
+    --background: 240 10% 4%;
+    --foreground: 0 0% 95%;
+    
+    /* Cards and surfaces */
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 95%;
+    
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 95%;
+    
+    /* Primary - Electric Purple */
+    --primary: 263 70% 58%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary - Deep Slate */
+    --secondary: 240 10% 12%;
+    --secondary-foreground: 0 0% 90%;
+    
+    /* Accent - Cyber Cyan */
+    --accent: 186 100% 42%;
+    --accent-foreground: 240 10% 4%;
+    
+    /* Muted */
+    --muted: 240 8% 15%;
+    --muted-foreground: 240 5% 55%;
+    
+    /* Destructive */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders and inputs */
+    --border: 240 8% 18%;
+    --input: 240 8% 12%;
+    --ring: 263 70% 58%;
+    
+    --radius: 0.5rem;
+    
+    /* HCE Custom tokens */
+    --hce-glow-primary: 263 70% 58%;
+    --hce-glow-accent: 186 100% 42%;
+    --hce-gradient-start: 263 70% 58%;
+    --hce-gradient-end: 186 100% 42%;
+    --hce-surface-glass: 240 10% 8%;
+    --hce-grid-line: 240 8% 15%;
+    
+    /* Sidebar (keeping for compatibility) */
+    --sidebar-background: 240 10% 4%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 263 70% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 10% 12%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 240 8% 18%;
+    --sidebar-ring: 263 70% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+  
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* HCE Module Number */
+  .hce-module-number {
+    @apply font-mono text-xs font-semibold tracking-widest uppercase;
+    color: hsl(var(--accent));
+  }
+  
+  /* HCE Glass Card */
+  .hce-glass {
+    @apply relative overflow-hidden rounded-lg border border-border/50;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--hce-surface-glass) / 0.8) 0%,
+      hsl(var(--hce-surface-glass) / 0.4) 100%
+    );
+    backdrop-filter: blur(20px);
+  }
+  
+  /* HCE Glow Effect */
+  .hce-glow {
+    @apply relative;
+  }
+  
+  .hce-glow::before {
+    content: '';
+    @apply absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500;
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      hsl(var(--primary) / 0.15),
+      transparent 40%
+    );
+    pointer-events: none;
+  }
+  
+  .hce-glow:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* HCE Grid Background */
+  .hce-grid-bg {
+    background-image: 
+      linear-gradient(hsl(var(--hce-grid-line) / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--hce-grid-line) / 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  /* HCE Gradient Text */
+  .hce-gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--accent)) 100%
+    );
+  }
+  
+  /* HCE Gradient Border */
+  .hce-gradient-border {
+    @apply relative;
+  }
+  
+  .hce-gradient-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-lg p-px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.5) 0%,
+      hsl(var(--accent) / 0.5) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  /* HCE Input Glow */
+  .hce-input-glow {
+    @apply transition-all duration-300;
+  }
+  
+  .hce-input-glow:focus {
+    @apply ring-2 ring-primary/50;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  
+  /* HCE Button Variants */
+  .hce-btn-primary {
+    @apply relative overflow-hidden bg-primary text-primary-foreground font-semibold;
+    @apply transition-all duration-300;
+  }
+  
+  .hce-btn-primary:hover {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.5);
+    transform: translateY(-2px);
+  }
+  
+  .hce-btn-outline {
+    @apply relative border border-border bg-transparent text-foreground;
+    @apply transition-all duration-300;
+  }
+  
+  .hce-btn-outline:hover {
+    @apply border-primary/50;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
+  }
+  
+  /* HCE Tag */
+  .hce-tag {
+    @apply inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-mono;
+    @apply bg-primary/10 text-primary border border-primary/20;
+  }
+  
+  /* HCE Section Divider */
+  .hce-divider {
+    @apply h-px w-full;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--primary) / 0.5) 50%,
+      transparent 100%
+    );
+  }
+}
+
+@layer utilities {
+  /* Animations */
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes glow-pulse {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .animate-scan-line {
+    animation: scan-line 3s linear infinite;
+  }
+  
+  @keyframes scan-line {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+  
+  /* Custom scrollbar */
+  .scrollbar-hce::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .scrollbar-hce::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  .scrollbar-hce::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.5);
+    border-radius: 3px;
+  }
+  
+  .scrollbar-hce::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+}
