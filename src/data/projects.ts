@@ -4,7 +4,7 @@ export interface Project {
   shortDescription: string;
   fullDescription: string;
   technologies: string[];
-  type: "SITE" | "SISTEMA" | "LANDING";
+  type: "SITE" | "SISTEMA" | "LANDING" | "GAME";
   imageUrl: string;
   images: string[]; // Array de imagens da pasta public (ex: "/images/projeto1.png")
   liveUrl?: string; // Link para ver o projeto online
