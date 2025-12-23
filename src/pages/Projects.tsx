@@ -262,7 +262,7 @@ export default function Projects() {
               Projetos que <span className="hce-gradient-text">contam histórias</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Cada projeto é uma expedição única. Conheça os sistemas e sites que já entregamos e como eles transformaram negócios.
+              Cada projeto é uma expedição única. Conheça os sistemas, sites e jogos que já entregamos e como eles transformaram negócios.
             </p>
           </motion.div>
 
@@ -273,7 +273,7 @@ export default function Projects() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex gap-2 mt-8"
           >
-            {["all", "SITE", "SISTEMA", "LANDING"].map((type) => (
+            {["all", "SITE", "SISTEMA", "LANDING", "GAME"].map((type) => (
               <button
                 key={type}
                 onClick={() => setFilter(type)}
