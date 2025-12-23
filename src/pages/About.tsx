@@ -62,7 +62,7 @@ export default function About() {
               <span className="hce-gradient-text">código</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Somos a HCE — Hardcore Content Expedition. Uma equipe que leva desenvolvimento a sério, mas sem perder a diversão no processo.
+              Somos a HCE . Uma equipe que leva desenvolvimento a sério, mas sem perder a diversão no processo.
             </p>
           </motion.div>
         </div>
