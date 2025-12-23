@@ -275,10 +275,10 @@ export default function Contact() {
                   Prefere email? Sem problemas.
                 </p>
                 <a 
-                  href="mailto:contato@hce.dev" 
+                  href="mailto:contato@hcestudio.com" 
                   className="text-primary hover:underline text-sm font-medium"
                 >
-                  contato@hce.dev
+                  contato@hcestudio.com
                 </a>
               </div>
 
@@ -291,12 +291,21 @@ export default function Contact() {
                   Resposta mais rápida via WhatsApp.
                 </p>
                 <a 
-                  href="https://wa.me/5581999999999" 
+                  href="https://wa.me/5581993725124" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-accent hover:underline text-sm font-medium"
                 >
-                  +55 81 98002-08922
+                  +55 81 99372-5124
+                </a>
+                
+                <a 
+                  href="https://wa.me/5581988064314" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline text-sm font-medium"
+                >
+                  +55 81 98806-4314
                 </a>
               </div>
 
