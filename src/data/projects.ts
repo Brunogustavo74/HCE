@@ -15,17 +15,17 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "Streamfy",
+    id: "streamfy",
     name: "Streamfy",
-    shortDescription: "INTRODUÇÃO A DESC",
-    fullDescription: "DESCRIÇÃO INTEIRA",
+    shortDescription: "Sistema web para assinaturas de streaming.",
+    fullDescription: "O projeto foi desenvolvido com foco em uma interface moderna e responsiva, utilizando React e Tailwind CSS no front-end. Para o backend e autenticação, foi utilizada a Supabase, garantindo segurança, armazenamento de dados e escalabilidade. Todo o sistema foi pensado para oferecer uma navegação intuitiva e uma experiência fluida para o usuário final.",
     technologies: ["React", "Tailwind", "PlpgSQL"],
     type: "SISTEMA",
     imageUrl: "",
-    images: [], // Adicione imagens aqui, ex: ["/images/streamfy-1.png", "/images/streamfy-2.png"]
+    images: ["/images/streamfy/logo.jpg", "/images/streamfy/page1.jpg", "/images/streamfy/page2.jpg"], // Adicione imagens aqui, ex: ["/images/streamfy-1.png", "/images/streamfy-2.png"]
     liveUrl: "https://streamfys.vercel.app", // Adicione o link aqui, ex: "https://streamfy.com"
-    features: ["Dashboard admin", "Notificações", "Relatórios"],
-    client: "Streamfy assinaturas",
+    features: ["Dashboard admin", "Notificações", "Relatórios", "Chat"],
+    client: "Streamfy Assinaturas",
     year: "2025",
   },
 ];
